@@ -1,0 +1,28 @@
+:root{
+  --paper:#e9dfca;
+  --gold:#b89a68;
+  --dark:#05070b;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:var(--dark);overflow:hidden}
+body{font-family:"Noto Serif Georgian",serif;color:var(--paper)}
+.story{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden;background:#05070b;isolation:isolate}
+.art-wrap{position:absolute;inset:-3%;z-index:0;animation:slowZoom 18s ease-in-out infinite alternate}
+.art{width:100%;height:100%;object-fit:cover;object-position:center;display:block;image-rendering:auto;filter:saturate(.72) contrast(1.08) brightness(.7)}
+.shade{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 45%,transparent 20%,rgba(0,0,0,.18) 52%,rgba(0,0,0,.78) 100%),linear-gradient(180deg,rgba(0,0,0,.55),transparent 27%,transparent 62%,rgba(0,0,0,.72))}
+.grain{position:absolute;inset:-50%;z-index:4;pointer-events:none;opacity:.10;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .18s steps(2) infinite}
+#rain{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;opacity:.35}
+.top,.bottom{position:absolute;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:24px 26px;letter-spacing:3px;text-transform:uppercase;font-size:9px;color:rgba(233,223,202,.68)}
+.top{top:0}.bottom{bottom:0;border-top:1px solid rgba(233,223,202,.1);background:linear-gradient(transparent,rgba(0,0,0,.35))}
+.center-message{position:absolute;z-index:5;left:50%;top:54%;transform:translate(-50%,-50%);width:min(90%,700px);text-align:center;text-shadow:0 3px 25px #000}
+.tiny{font-size:10px;letter-spacing:5px;color:var(--gold);opacity:.9;margin-bottom:18px}
+h1{font-weight:400;font-size:clamp(38px,9vw,90px);letter-spacing:3px;margin:0;line-height:1.2;color:#f0e6d2}
+.rule{width:70px;height:1px;background:var(--gold);margin:25px auto 17px;opacity:.75}
+.center-message p{font-size:clamp(24px,5vw,44px);margin:0;color:var(--gold);letter-spacing:4px}
+button{font:inherit;color:rgba(233,223,202,.68);background:none;border:0;cursor:pointer;letter-spacing:2px;font-size:9px;text-transform:uppercase;padding:0}
+.hint{position:absolute;z-index:6;left:50%;bottom:52px;transform:translateX(-50%);font-size:8px;letter-spacing:3px;color:rgba(233,223,202,.45);opacity:1;animation:fadeHint 4s ease 3s forwards}
+@keyframes slowZoom{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.09) translate3d(-1.2%,-.8%,0)}}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(3%,-2%)}50%{transform:translate(-2%,3%)}75%{transform:translate(2%,2%)}100%{transform:translate(-3%,-1%)}}
+@keyframes fadeHint{to{opacity:0}}
+@media(max-aspect-ratio:3/4){.art{object-position:center}.top,.bottom{padding:18px 16px}.center-message{top:57%}}
+@media(prefers-reduced-motion:reduce){.art-wrap,.grain{animation:none} .hint{display:none}}
